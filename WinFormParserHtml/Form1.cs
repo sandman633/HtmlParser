@@ -18,7 +18,7 @@ namespace WinFormParserHtml
         {
             InitializeComponent();
         }
-        HtmlLoader loader = new HtmlLoader("https://mail.ru/");
+        HtmlLoader loader = new HtmlLoader("https://www.simbirsoft.com/");
         Parser parser = new Parser();
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -30,7 +30,7 @@ namespace WinFormParserHtml
             var dom = new HtmlParser();
             var result = await dom.ParseDocumentAsync(source);
             listBox1.Items.AddRange(parser.Parse(result));
-
+            dataGridView1.DataSource = parser.GetWordCount(parser.Parse(result)).ToArray();
         }
     }
 }
