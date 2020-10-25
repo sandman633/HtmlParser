@@ -51,6 +51,7 @@ namespace WinFormParserHtml.Model
                 }
             }
             return Words;
+            //TODO: Сделать рефакторинг кода
         }
     }
 }
