@@ -11,28 +11,29 @@ namespace WinFormParserHtml.Model
 {
     public class Parser
     {
-        public string[] Parse(IHtmlDocument doc)
-        {
-            var str = doc.QuerySelectorAll("body")
-                         .Select(x => x.TextContent.Trim(new char[] 
+        public string[] Parse(IHtmlDocument doc)// Метод для обработки html документа,
+        {//вычлиняющий текстовый контент из тега body
+            var text = doc.QuerySelectorAll("body")
+                         .Select(x => x.TextContent
+                         .Trim(new char[] 
                          {'-',' ', ',', '.', '!', '?','"', ';', ':', 
-                         '[', ']', '(', ')', '\n', '\r', '\t'}));
-            string newstr ="";
-            foreach(string s in str)
+                         '[', ']', '(', ')', '\n', '\r', '\t'}));// удаляем ненужные нам символы из текста
+
+            return GetList(text);
+        }
+        private string[] GetList(IEnumerable<string> text)//метод занимающийся обработкой текста 
+        {//и разделением его на отдельные слова
+            string newstr = "";
+            foreach (string s in text)
             {
-                if (s!="")
+                if (s != "")
                 {
                     newstr += s + ' ';
                 }
             }
-            str = newstr.Split(new char[] {'-',' ', ',', '.', '!', '?','"', ';', ':', '[', ']', '(', ')', '\n',
-'\r', '\t'});
-            str = GetList(str);
-            return str.ToArray();
-        }
-        public string[] GetList(IEnumerable<string> words)
-        {
-            List<string> List = new List<string>(words);
+            text = newstr.Split(new char[] {'-',' ', ',', '.', '!', '?','"', ';',
+                                          ':', '[', ']', '(', ')', '\n', '\r', '\t'});
+            List<string> List = new List<string>(text);
             List.RemoveAll(x => string.IsNullOrEmpty(x));
             List.RemoveAll(x => x == "\n");
             return List.ToArray();
@@ -54,7 +55,6 @@ namespace WinFormParserHtml.Model
                 }
             }
             return Words;
-            //TODO: Сделать рефакторинг кода
         }
     }
 }
