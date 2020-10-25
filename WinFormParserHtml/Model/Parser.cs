@@ -14,8 +14,9 @@ namespace WinFormParserHtml.Model
         public string[] Parse(IHtmlDocument doc)
         {
             var str = doc.QuerySelectorAll("body")
-                         .Select(x => x.TextContent.Trim(new char[] {'-',' ', ',', '.', '!', '?','"', ';', ':', '[', ']', '(', ')', '\n',
-'\r', '\t'}));
+                         .Select(x => x.TextContent.Trim(new char[] 
+                         {'-',' ', ',', '.', '!', '?','"', ';', ':', 
+                         '[', ']', '(', ')', '\n', '\r', '\t'}));
             string newstr ="";
             foreach(string s in str)
             {
@@ -39,15 +40,17 @@ namespace WinFormParserHtml.Model
         public Dictionary<string,int> GetWordCount(string[] words)
         {
             Dictionary<string, int> Words = new Dictionary<string, int>();
+            string upperword;
             foreach(string s in words)
             {
-                if(Words.TryGetValue(s,out int count))
+                upperword = s.ToUpper();
+                if(Words.TryGetValue(s.ToUpper(),out int count))
                 {
-                    Words[s] = ++count;
+                    Words[s.ToUpper()] = ++count;
                 }
                 else
                 {
-                    Words.Add(s, 1);
+                    Words.Add(s.ToUpper(), 1);
                 }
             }
             return Words;
