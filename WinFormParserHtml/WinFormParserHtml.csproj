@@ -64,6 +64,7 @@
     <Compile Include="Model\HtmlLoader.cs" />
     <Compile Include="Model\Parser.cs" />
     <Compile Include="Model\WordDetector.cs" />
+    <Compile Include="Presenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

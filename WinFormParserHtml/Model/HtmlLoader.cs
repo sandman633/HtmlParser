@@ -9,12 +9,20 @@ namespace WinFormParserHtml.Model
 {
     public class HtmlLoader//класс описывающий скачивание и сохранение страницы путем http запроса
     {
-        public string Url { get; set; } //строка с url, сюда будем сохранять полученный адрес
+        private string Url { get; set; } //строка с url, сюда будем сохранять полученный адрес
         private HttpClient client;
         public HtmlLoader(string url)//инициализируем поля
         {
-            Url = url;
+            SetUrl(url);
             client = new HttpClient();
+        }
+        public HtmlLoader()
+        {
+            client = new HttpClient();
+        }
+        public void SetUrl(string url)
+        {
+            Url = url;
         }
         public async Task<string> GetPageAsync()//скачиваем страницу посредством http запроса
         {

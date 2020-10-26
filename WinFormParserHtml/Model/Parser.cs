@@ -38,22 +38,5 @@ namespace WinFormParserHtml.Model
             List.RemoveAll(x => x == "\n");
             return List.ToArray();
         }
-        public Dictionary<string,int> GetWordCount(string[] words)
-        {
-            Dictionary<string, int> Words = new Dictionary<string, int>();
-            foreach(string s in words)
-            {
-                upperword = s.ToUpper();
-                if(Words.TryGetValue(s.ToUpper(),out int count))
-                {
-                    Words[s.ToUpper()] = ++count;
-                }
-                else
-                {
-                    Words.Add(s.ToUpper(), 1);
-                }
-            }
-            return Words;
-        }
     }
 }

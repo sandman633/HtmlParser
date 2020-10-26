@@ -32,5 +32,10 @@ namespace WinFormParserHtml
             listBox1.Items.AddRange(parser.Parse(result));
             dataGridView1.DataSource = parser.GetWordCount(parser.Parse(result)).ToArray();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
