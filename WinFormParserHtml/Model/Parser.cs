@@ -1,5 +1,4 @@
-﻿using AngleSharp.Dom;
-using AngleSharp.Html.Dom;
+﻿using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
 using System;
 using System.Collections.Generic;
@@ -15,29 +14,12 @@ namespace WinFormParserHtml.Model
         public string[] Parse(IHtmlDocument doc)// Метод для обработки html документа,
         {//вычлиняющий текстовый контент из тега body
             var text = doc.QuerySelectorAll("body")
-                         .Select(x => GetTextContent(x));
-            
-            foreach(string s in text)
-            {
-                s.Trim(new char[]
-                         {'-',' ', ',', '.', '!', '?','"', ';', ':',
-                         '[', ']', '(', ')', '\n', '\r', '\t','{','}','<','>'});
-            }
-            // удаляем ненужные нам символы из текста
+                         .Select(x => x.TextContent
+                         .Trim(new char[] 
+                         {'-',' ', ',', '.', '!', '?','"', ';', ':', 
+                         '[', ']', '(', ')', '\n', '\r', '\t'}));// удаляем ненужные нам символы из текста
 
             return GetList(text);
-        }
-        private string GetTextContent(IElement element)
-        {
-            string s = " ";
-            if (element.TagName != "script")
-            {
-                return element.TextContent;
-            }
-            else
-            {
-                return s;
-            }
         }
         private string[] GetList(IEnumerable<string> text)//метод занимающийся обработкой текста 
         {//и разделением его на отдельные слова
