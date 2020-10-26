@@ -41,7 +41,6 @@ namespace WinFormParserHtml.Model
         public Dictionary<string,int> GetWordCount(string[] words)
         {
             Dictionary<string, int> Words = new Dictionary<string, int>();
-            string upperword;
             foreach(string s in words)
             {
                 upperword = s.ToUpper();
