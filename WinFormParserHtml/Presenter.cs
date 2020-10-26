@@ -10,7 +10,7 @@ namespace WinFormParserHtml
 {
     public class Presenter
     {
-        public Action<object, EventArgs> Started;
+        public event Action<string, Dictionary<string,int>> Started;
         private HtmlLoader loader;
         private Parser parser;
         private WordDetector detector;
@@ -35,7 +35,8 @@ namespace WinFormParserHtml
         }
         private void Handler(WordDetector detector,string message)
         {
-
+            if(Started!=null)
+                Started.Invoke(message, detector.Words);
         }
 
     }

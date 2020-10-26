@@ -9,7 +9,7 @@ namespace WinFormParserHtml.Model
     public class WordDetector//класс описывающий работу вычисления количества каждого слова на странице
     {
         public event Action<WordDetector,string> Ended; 
-        private Dictionary<string, int> Words;//словарь в котором будут хранится слова и их количество
+        public Dictionary<string, int> Words;//словарь в котором будут хранится слова и их количество
         public WordDetector()
         {
             Words = new Dictionary<string, int>();
