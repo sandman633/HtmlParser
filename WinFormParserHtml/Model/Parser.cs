@@ -1,4 +1,5 @@
-﻿using AngleSharp.Html.Dom;
+﻿using AngleSharp.Dom;
+using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,9 @@ namespace WinFormParserHtml.Model
     {
         public string[] Parse(IHtmlDocument doc)// Метод для обработки html документа,
         {//вычлиняющий текстовый контент из тега body
+            doc.QuerySelectorAll("script")
+                .Text(" ");
+            doc.QuerySelectorAll("noscript").Text(" ");
             var text = doc.QuerySelectorAll("body")
                          .Select(x => x.TextContent
                          .Trim(new char[] 
