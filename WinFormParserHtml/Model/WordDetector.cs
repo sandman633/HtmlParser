@@ -8,7 +8,7 @@ namespace WinFormParserHtml.Model
 {
     public class WordDetector//класс описывающий работу вычисления количества каждого слова на странице
     {
-        public event Action<WordDetector,string> Ended; 
+        public event Action<WordDetector,string> Finished; 
         public Dictionary<string, int> Words;//словарь в котором будут хранится слова и их количество
         public WordDetector()
         {
@@ -27,8 +27,8 @@ namespace WinFormParserHtml.Model
                     Words.Add(s.ToUpper(), 1);
                 }
             }
-            if (Ended != null)
-                Ended.Invoke(this, "Работа окончена");
+            if (Finished != null)
+                Finished.Invoke(this, "Работа окончена");
         }
     }
 }

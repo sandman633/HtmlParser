@@ -8,35 +8,35 @@ using WinFormParserHtml.Model;
 
 namespace WinFormParserHtml
 {
-    public class Presenter
+    public class Presenter//класс связывающий модель и представление
     {
-        public event Action<string, Dictionary<string,int>> Started;
-        private HtmlLoader loader;
-        private Parser parser;
-        private WordDetector detector;
+        public event Action<string, Dictionary<string,int>> Done;
+        private readonly HtmlLoader loader;//Объявляем все переменные необходимые для работы
+        private readonly Parser parser;
+        private readonly WordDetector detector;
 
-        public Presenter()
+        public Presenter()//незабываем проинициализировать 
         {
             loader = new HtmlLoader();
             parser = new Parser();
             detector = new WordDetector();
-            detector.Ended += Handler;
+            detector.Finished += Handler;
         }
-        public void GetUrl(string url)
+        public void GetUrl(string url)//устанавливаем url 
         {
             loader.SetUrl(url);
         }
-        public async void Start()
+        public async void Start()//метод начинающий работу 
         {
             var source = await loader.GetPageAsync();
             var dom = new HtmlParser();
             var result = await dom.ParseDocumentAsync(source);
             detector.GetWordCount(parser.Parse(result));
         }
-        private void Handler(WordDetector detector,string message)
-        {
-            if(Started!=null)
-                Started.Invoke(message, detector.Words);
+        private void Handler(WordDetector detector,string message)//через обработчик события передаем всю информацию 
+        {//о результате работы парсера представлению
+            if(Done!=null)
+                Done.Invoke(message, detector.Words);
         }
 
     }

@@ -23,7 +23,7 @@ namespace WinFormParserHtml
         private void Form1_Load(object sender, EventArgs e)
         {
             presenter = new Presenter();
-            presenter.Started += Presenter_Started;
+            presenter.Done += Presenter_Started;
         }
 
         private void Presenter_Started(string message, Dictionary<string,int> words)
@@ -35,7 +35,7 @@ namespace WinFormParserHtml
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(!string.IsNullOrEmpty(textBox1.Text))
+            if(!string.IsNullOrEmpty(textBox1.Text)&&)
             {
                 presenter.GetUrl(textBox1.Text);
                 presenter.Start();

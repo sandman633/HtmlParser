@@ -10,7 +10,7 @@ namespace WinFormParserHtml.Model
     public class HtmlLoader//класс описывающий скачивание и сохранение страницы путем http запроса
     {
         private string Url { get; set; } //строка с url, сюда будем сохранять полученный адрес
-        private HttpClient client;
+        private readonly HttpClient client;
         public HtmlLoader(string url)//инициализируем поля
         {
             SetUrl(url);
