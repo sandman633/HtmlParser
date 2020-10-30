@@ -39,7 +39,7 @@ namespace WinFormParserHtml
             var result = await dom.ParseDocumentAsync(source);
             detector.GetWordCount(parser.Parse(result));
         }
-        private void Handler(Dictionary<string, int> words, string message)//через обработчик события передаем всю информацию 
+        private void Handler(WordDetector detector,string message)//через обработчик события передаем всю информацию 
         {//о результате работы парсера представлению
             if(Done!=null)
                 Done.Invoke(message, detector.Words);
