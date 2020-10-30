@@ -10,12 +10,10 @@ namespace WinFormParserHtml.Model
     {
         public event Action<WordDetector,string> Finished;//событие срабатывающее при завершении работы цикла
         public Dictionary<string, int> Words;//словарь в котором будут хранится слова и их количество
-        public WordDetector()//инициализируем словарь
-        {
-            Words = new Dictionary<string, int>();
-        }
+
         public void GetWordCount(string[] words)//метод сортирующий слова по словарю
         {
+            Words = new Dictionary<string, int>();
             foreach (string s in words)
             {
                 if (Words.TryGetValue(s.ToUpper(), out int count))//если слово существует в словаре то мы добавляем 1+ к его количеству

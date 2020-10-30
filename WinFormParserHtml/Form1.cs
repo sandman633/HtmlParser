@@ -14,7 +14,7 @@ namespace WinFormParserHtml
 {
     public partial class Form1 : Form
     {
-        Presenter presenter;
+        private Presenter presenter;
         public Form1()
         {
             InitializeComponent();
