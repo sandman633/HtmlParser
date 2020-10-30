@@ -26,16 +26,24 @@ namespace WinFormParserHtml.Model
         }
         public async Task<string> GetPageAsync()//скачиваем страницу посредством http запроса
         {
+            try
+            {
 
-            var response = await client.GetAsync(Url);
-            if(response != null && response.StatusCode == HttpStatusCode.OK)//убеждаемся что ответ не 
-            {//нулевой и статус код ответа равен OK
-                var source = await response.Content.ReadAsStringAsync();
-                SaveHtml(source);//не забываем сохранить страницу на диск             
+                var response = await client.GetAsync(Url);
+                if(response != null && response.StatusCode == HttpStatusCode.OK)//убеждаемся что ответ не 
+                {//нулевой и статус код ответа равен OK
+                    var source = await response.Content.ReadAsStringAsync();
+                    SaveHtml(source);//не забываем сохранить страницу на диск             
 
-                return source;
-            }//в другом случае выбиваем экспешн
-            throw new Exception("Результат Http запроса оказался null или другая ошибка связанная с этим запросом");
+                    return source;
+                }
+                return null;//если нет возвращаем null
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return null;
+            }
         }
         public async void SaveHtml(string html)//страница сохраняется в корневой папке проекта
         {
