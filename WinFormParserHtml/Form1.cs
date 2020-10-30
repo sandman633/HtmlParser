@@ -33,6 +33,7 @@ namespace WinFormParserHtml
             dataGridView1.DataSource = words.OrderByDescending(key => key.Value).ToArray();
             dataGridView1.Columns[0].HeaderText = "Слова";
             dataGridView1.Columns[1].HeaderText = "Количество";
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -8,7 +8,7 @@ namespace WinFormParserHtml.Model
 {
     public class WordDetector//класс описывающий работу вычисления количества каждого слова на странице
     {
-        public event Action<WordDetector,string> Finished;//событие срабатывающее при завершении работы цикла
+        public event Action<Dictionary<string, int>, string> Finished;//событие срабатывающее при завершении работы цикла
         public Dictionary<string, int> Words;//словарь в котором будут хранится слова и их количество
         public WordDetector()//инициализируем словарь
         {
@@ -16,6 +16,7 @@ namespace WinFormParserHtml.Model
         }
         public void GetWordCount(string[] words)//метод сортирующий слова по словарю
         {
+            Dictionary<string, int> result;
             foreach (string s in words)
             {
                 if (Words.TryGetValue(s.ToUpper(), out int count))//если слово существует в словаре то мы добавляем 1+ к его количеству
@@ -27,8 +28,17 @@ namespace WinFormParserHtml.Model
                     Words.Add(s.ToUpper(), 1);
                 }
             }
+            result = Words;
+            RemoveAll(Words);
             if (Finished != null)
-                Finished.Invoke(this, "Работа окончена");//по окончанию работы отправляем готовый словарь представлению
+                Finished.Invoke(result, "Работа окончена");//по окончанию работы отправляем готовый словарь представлению
+        }
+        private void RemoveAll(Dictionary<string, int> words)
+        {
+            foreach(var item in words)
+            {
+                Words.Remove(item.Key);
+            }
         }
     }
 }
