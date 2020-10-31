@@ -1,0 +1,5 @@
+#### Примеры для тестирования программы
+* https://www.simbirsoft.com
+* https://ru.stackoverflow.com/questions/1197983/В-react-div-должен-содержать-один-дочерний-элемент
+* google.com
+* https://ru.wikipedia.org/wiki/Утомлённые_солнцем_2:_Цитадель
