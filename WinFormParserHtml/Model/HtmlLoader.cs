@@ -47,7 +47,7 @@ namespace WinFormParserHtml.Model
         }
         public async void SaveHtml(string html)//страница сохраняется в корневой папке проекта
         {
-            using(StreamWriter sw = new StreamWriter("html.txt"))
+            using(StreamWriter sw = new StreamWriter("html.txt",true))
             {
                 await sw.WriteLineAsync(html);
             }
